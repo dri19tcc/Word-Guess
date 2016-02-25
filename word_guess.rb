@@ -16,9 +16,14 @@ class WordGuess
     puts "You've used the following letters:  #{@used_letters}."
   end
 
-  def display_word
+  def display_word(letter = "")
     puts "_ " * @word.length
-    
+    @word.each do |i|
+      if i == letter
+        i = letter
+        puts "letter is changed to " + i        
+      end
+    end
   end
 
 end
@@ -33,8 +38,7 @@ new_game.display_word
 letter = gets.chomp.downcase #downcase the letter so always matches
 puts "You chose #{letter}." #so user sees what letter they chose
 
-if new_game.word.include?(letter)
+new_game.display_word(letter)
 
-end
 
 new_game.add_to_used_letters(letter) #new word is our game
