@@ -27,4 +27,4 @@ puts "Please give me a letter."
 letter = gets.chomp.downcase #downcase the letter so always matches
 puts "You chose #{letter}." #so user sees what letter they chose
 
-new_game.add_to_used_letters(letter) #new word is our game
+new_game.add_to_used_letters(letter) #new word is our game and we are running method on it
