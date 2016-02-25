@@ -21,7 +21,7 @@ class WordGuess
     @word.each do |i|
       if i == letter
         i = letter
-        puts "letter is changed to " + i        
+        puts "letter is changed to " + i
       end
     end
   end
@@ -38,11 +38,7 @@ new_game.display_word
 letter = gets.chomp.downcase #downcase the letter so always matches
 puts "You chose #{letter}." #so user sees what letter they chose
 
-<<<<<<< HEAD
-new_game.add_to_used_letters(letter) #new word is our game and we are running method on it
-=======
 new_game.display_word(letter)
 
 
 new_game.add_to_used_letters(letter) #new word is our game
->>>>>>> 1f44d1af29af7296c6936ef489d718e842256f65
