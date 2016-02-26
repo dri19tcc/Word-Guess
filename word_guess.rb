@@ -1,5 +1,7 @@
 require "colorize"
 require "rainbow"
+require "artii"
+require "lolcat"
 
 class WordGuess
   attr_reader :word, :wrong_letters, :dashes
@@ -8,12 +10,10 @@ class WordGuess
     @word = get_word
     @dashes = dashes_array
     @wrong_letters = [] #empty array to hold used letters
-
-    print @word
   end
 
   def get_word #using this method to use in initialize to call array
-    list_of_words = ["lollipop", "elephant", "hotdog", "awesome", "kilometer"].shuffle #shuffle the array so it's different each time
+    list_of_words = ["lollipop", "elephant", "hotdog", "awesome", "kilometer", "treasure", "dominoes", "electricity", "lightsaber", "battery", "circumference", "eloquent", "impeccable", "meticulous", "predilection", "superfluous", "vociferous", "zenith"].shuffle #shuffle the array so it's different each time
     word_array = list_of_words[0].split(//) #always picking first word in array
   end
 
@@ -73,6 +73,9 @@ end
 
 new_game = WordGuess.new
 #puts new_word.word
+
+a = Artii::Base.new :font => 'slant'
+puts a.asciify('Word Game!').colorize(:cyan)
 
 puts "We are going to play a game.  We will 'think' " +
 "of a word, and you try to guess the word letter by letter."
