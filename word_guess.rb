@@ -52,21 +52,24 @@ class WordGuess
     end
     if @wrong_letters.length == 5
       puts ""
-      puts Rainbow("You lose!").red.blink
+      puts Rainbow("You lose!  The word was #{@word.join}").red.blink
       exit
     end
     puts ""
+    puts ""
     puts "Wrong letters:  #{@wrong_letters}."
+    puts ""
 
   end
 
   def wrong_candelabra
-    puts @wrong_letters.length
+    #puts @wrong_letters.length
     puts "$ ".colorize(:yellow) * (5 - @wrong_letters.length)
     puts "| ".colorize(:light_blue) * 5
     puts "|_|_|_|_|".colorize(:light_blue)
     puts "    |".colorize(:light_blue)
     puts "   _|_".colorize(:light_blue)
+    puts ""
   end
 
 end
@@ -77,9 +80,9 @@ new_game = WordGuess.new
 a = Artii::Base.new :font => 'slant'
 puts a.asciify('Word Game!').colorize(:cyan)
 
-puts "We are going to play a game.  We will 'think' " +
-"of a word, and you try to guess the word letter by letter."
-
+puts "We are going to play a game.  We will 'think' "
+puts "of a word, and you try to guess the word letter by letter."
+puts ""
 new_game.display_word
 
 until new_game.wrong_letters.length == 5 || new_game.word == new_game.dashes
