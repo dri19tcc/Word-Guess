@@ -1,5 +1,5 @@
 class WordGuess
-  attr_reader :word
+  attr_reader :word, :wrong_letters, :dashes
 
   def initialize
     @word = get_word
@@ -10,7 +10,7 @@ class WordGuess
   end
 
   def get_word #using this method to use in initialize to call array
-    list_of_words = ["word1", "word22", "word333"].shuffle #shuffle the array so it's different each time
+    list_of_words = ["lollipop", "elephant", "hotdog", "awesome", "kilometer"].shuffle #shuffle the array so it's different each time
     word_array = list_of_words[0].split(//) #always picking first word in array
   end
 
@@ -24,7 +24,6 @@ class WordGuess
     unless @word.include?(letter)
       @wrong_letters << letter
     end
-    puts "Wrong letters:  #{@wrong_letters}."
   end
 
   def display_word(letter = nil)
@@ -41,7 +40,17 @@ class WordGuess
     @dashes.each do |i|
       print i + " "
     end
+    if @word == @dashes
+      puts "You win!"
+      exit
+    end
+    if @wrong_letters.length == 5
+      puts ""
+      puts "You lose!"
+      exit
+    end
     puts ""
+    puts "Wrong letters:  #{@wrong_letters}."
 
   end
 
@@ -64,17 +73,19 @@ puts "We are going to play a game.  We will 'think' " +
 
 new_game.display_word
 
-is_a_letter = false
-until is_a_letter == true
+until new_game.wrong_letters.length == 5 || new_game.word == new_game.dashes
   puts "Please give me a letter."
-  letter = gets.chomp.downcase #downcase the letter so always matches
-  if /[[:alpha:]]/.match(letter)
-    is_a_letter = true
+
+  is_a_letter = false
+  until is_a_letter == true
+    letter = gets.chomp.downcase #downcase the letter so always matches
+    if /[[:alpha:]]/.match(letter)
+      is_a_letter = true
+    end
   end
+  puts "You chose #{letter}." #so user sees what letter they chose
+  
+  new_game.display_word(letter)
 end
-puts "You chose #{letter}." #so user sees what letter they chose
-
-new_game.display_word(letter)
-
 
 #new_game.add_to_wrong_letters(letter) #new word is our game
