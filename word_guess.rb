@@ -1,4 +1,5 @@
 require "colorize"
+require "rainbow"
 
 class WordGuess
   attr_reader :word, :wrong_letters, :dashes
@@ -31,7 +32,9 @@ class WordGuess
   def display_word(letter = nil)
     unless
       @word.include?(letter) || letter == nil
-      add_to_wrong_letters(letter)
+      unless @wrong_letters.include?(letter)
+        add_to_wrong_letters(letter)
+      end
     end
     @word.each_with_index do |element, index|
       if element == letter
@@ -43,12 +46,13 @@ class WordGuess
       print i + " "
     end
     if @word == @dashes
-      puts "You win!"
+      puts ""
+      puts Rainbow("You win!").green.blink
       exit
     end
     if @wrong_letters.length == 5
       puts ""
-      puts "You lose!"
+      puts Rainbow("You lose!").red.blink
       exit
     end
     puts ""
