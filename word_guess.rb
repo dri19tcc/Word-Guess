@@ -1,3 +1,5 @@
+require "colorize"
+
 class WordGuess
   attr_reader :word, :wrong_letters, :dashes
 
@@ -56,11 +58,11 @@ class WordGuess
 
   def wrong_candelabra
     puts @wrong_letters.length
-    puts "$ " * (5 - @wrong_letters.length)
-    puts "| " * 5
-    puts "|_|_|_|_|"
-    puts "    |"
-    puts "   _|_"
+    puts "$ ".colorize(:yellow) * (5 - @wrong_letters.length)
+    puts "| ".colorize(:light_blue) * 5
+    puts "|_|_|_|_|".colorize(:light_blue)
+    puts "    |".colorize(:light_blue)
+    puts "   _|_".colorize(:light_blue)
   end
 
 end
@@ -84,7 +86,7 @@ until new_game.wrong_letters.length == 5 || new_game.word == new_game.dashes
     end
   end
   puts "You chose #{letter}." #so user sees what letter they chose
-  
+
   new_game.display_word(letter)
 end
 
