@@ -61,10 +61,17 @@ new_game = WordGuess.new
 
 puts "We are going to play a game.  We will 'think' " +
 "of a word, and you try to guess the word letter by letter."
-puts "Please give me a letter."
+
 new_game.display_word
 
-letter = gets.chomp.downcase #downcase the letter so always matches
+is_a_letter = false
+until is_a_letter == true
+  puts "Please give me a letter."
+  letter = gets.chomp.downcase #downcase the letter so always matches
+  if /[[:alpha:]]/.match(letter)
+    is_a_letter = true
+  end
+end
 puts "You chose #{letter}." #so user sees what letter they chose
 
 new_game.display_word(letter)
