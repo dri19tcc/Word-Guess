@@ -4,7 +4,7 @@ class WordGuess
   def initialize
     @word = get_word
     @dashes = dashes_array
-    @used_letters = [] #empty array to hold used letters
+    @wrong_letters = [] #empty array to hold used letters
 
     print @word
   end
@@ -20,21 +20,38 @@ class WordGuess
     return dash_array
   end
 
-  def add_to_used_letters(letter)
-    @used_letters << letter
-    puts "You've used the following letters:  #{@used_letters}."
+  def add_to_wrong_letters(letter)
+    unless @word.include?(letter)
+      @wrong_letters << letter
+    end
+    puts "Wrong letters:  #{@wrong_letters}."
   end
 
-  def display_word(letter = "")
+  def display_word(letter = nil)
+    unless
+      @word.include?(letter) || letter == nil
+      add_to_wrong_letters(letter)
+    end
     @word.each_with_index do |element, index|
       if element == letter
         @dashes[index] = letter
       end
     end
+    wrong_candelabra
     @dashes.each do |i|
       print i + " "
     end
     puts ""
+
+  end
+
+  def wrong_candelabra
+    puts @wrong_letters.length
+    puts "$ " * (5 - @wrong_letters.length)
+    puts "| " * 5
+    puts "|_|_|_|_|"
+    puts "    |"
+    puts "   _|_"
   end
 
 end
@@ -53,4 +70,4 @@ puts "You chose #{letter}." #so user sees what letter they chose
 new_game.display_word(letter)
 
 
-new_game.add_to_used_letters(letter) #new word is our game
+#new_game.add_to_wrong_letters(letter) #new word is our game
