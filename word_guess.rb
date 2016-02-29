@@ -58,6 +58,19 @@ class WordGuess
 
   end
 
+  # easy version populates word with vowels
+  def easy_version
+    vowels = ["a", "e", "i", "o", "u"]
+    5.times do |i|
+      vowel = vowels[i]
+      @word.each_with_index do |element, index|
+        if element == vowel
+          @dashes[index] = vowel
+        end
+      end
+    end
+  end
+
   def wrong_candelabra
     #puts @wrong_letters.length
     puts "$ ".colorize(:yellow) * (5 - @wrong_letters.length)
@@ -79,7 +92,13 @@ puts a.asciify('Word Game!').colorize(:cyan)
 puts "We are going to play a game.  We will 'think' "
 puts "of a word, and you try to guess the word letter by letter."
 puts ""
+puts "Do you want easy or normal mode?"
+mode = gets.chomp.downcase
+if mode == "easy"
+  new_game.easy_version
+end
 new_game.display_word
+
 
 until new_game.wrong_letters.length == 5 || new_game.word == new_game.dashes
   puts "Please give me a letter."
