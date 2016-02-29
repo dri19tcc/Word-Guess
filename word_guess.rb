@@ -12,7 +12,7 @@ class WordGuess
   end
 
   def get_word #using this method to use in initialize to call array
-    list_of_words = ["lollipop", "elephant", "hotdog", "awesome", "kilometer", "treasure", "dominoes", "electricity", "lightsaber", "battery", "circumference", "eloquent", "impeccable", "meticulous", "predilection", "superfluous", "vociferous", "zenith"].shuffle #shuffle the array so it's different each time
+    list_of_words = ["susceptible", "lollipop", "elephant", "hotdog", "awesome", "kilometer", "treasure", "dominoes", "electricity", "lightsaber", "battery", "circumference", "eloquent", "impeccable", "meticulous", "predilection", "superfluous", "vociferous", "zenith"].shuffle #shuffle the array so it's different each time
     word_array = list_of_words[0].split(//) #always picking first word in array
   end
 
@@ -109,9 +109,14 @@ until new_game.wrong_letters.length == 5 || new_game.word == new_game.dashes
     #if /[[:alpha:]]/.match(letter)
     if /^[a-zA-Z]$/.match(letter)
       is_a_letter = true
+    else
+      puts "That's not a letter, try again!"
     end
   end
-  puts "You chose #{letter}." #so user sees what letter they chose
+  puts ("You chose #{letter}.").colorize(:red).on_blue #so user sees what letter they chose
+    if new_game.wrong_letters.include?(letter)
+      puts "You already chose #{letter}, please give another letter."
+    end
 
   new_game.display_word(letter)
 end
