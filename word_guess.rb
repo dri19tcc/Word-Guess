@@ -1,7 +1,6 @@
 require "colorize"
 require "rainbow"
 require "artii"
-require "lolcat"
 
 class WordGuess
   attr_reader :word, :wrong_letters, :dashes
@@ -18,8 +17,8 @@ class WordGuess
   end
 
   def dashes_array
-    length = "_" * @word.length
-    dash_array = length.split(//)
+    length = "_" * @word.length #.each use regex to check letter, if it's a letter...
+    dash_array = length.split(//)#// splits on a character
     return dash_array
   end
 
@@ -30,12 +29,9 @@ class WordGuess
   end
 
   def display_word(letter = nil)
-    unless
-      @word.include?(letter) || letter == nil
-      unless @wrong_letters.include?(letter)
-        add_to_wrong_letters(letter)
-      end
-    end
+    if !@word.include?(letter) && letter != nil && !@wrong_letters.include?(letter)
+      add_to_wrong_letters(letter)
+    end #if letter hasn't been guessed already, and it's not nothing, and it's not in the word
     @word.each_with_index do |element, index|
       if element == letter
         @dashes[index] = letter
@@ -91,7 +87,8 @@ until new_game.wrong_letters.length == 5 || new_game.word == new_game.dashes
   is_a_letter = false
   until is_a_letter == true
     letter = gets.chomp.downcase #downcase the letter so always matches
-    if /[[:alpha:]]/.match(letter)
+    #if /[[:alpha:]]/.match(letter)
+    if /^[a-zA-Z]$/.match(letter)
       is_a_letter = true
     end
   end
