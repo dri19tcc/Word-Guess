@@ -12,7 +12,9 @@ class WordGuess
   end
 
   def get_word #using this method to use in initialize to call array
-    list_of_words = ["development", "digestion", "window", "yesterday", "separate", "disease", "carriage", "punishment", "transport", "tomorrow", "instrument", "competition", "representative", "achievement", "stomach", "observation", "tendency", "building", "business", "attention", "attraction", "behavior", "questionnaire", "susceptible", "lollipop", "elephant", "hotdog", "awesome", "kilometer", "treasure", "dominoes", "electricity", "lightsaber", "battery", "circumference", "eloquent", "impeccable", "meticulous", "predilection", "superfluous", "vociferous", "zenith"].shuffle #shuffle the array so it's different each time
+    list_of_words = ["development", "digestion", "window", "yesterday", "separate", "disease", "carriage", "punishment", "transport", "tomorrow", "instrument", "competition", "representative",
+      "achievement", "stomach", "observation", "tendency", "building", "business", "attention", "attraction", "behavior", "questionnaire", "susceptible", "lollipop", "elephant", "hotdog", "awesome",
+      "kilometer", "treasure", "dominoes", "electricity", "lightsaber", "battery", "circumference", "eloquent", "impeccable", "meticulous", "predilection", "superfluous", "vociferous", "zenith"].shuffle #shuffle the array so it's different each time
     word_array = list_of_words[0].split(//) #always picking first word in array
   end
 
